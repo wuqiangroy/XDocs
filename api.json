@@ -11,26 +11,54 @@
       },
       "password": {
         "verbose": "密码",
-      }
+      },
+      "email": {
+        "verbose": "邮箱",
+        "regex": "email"
+      },
     },
     "action": {
       "list": {
-        "args": [],
-        "return": []
+        "args": [
+          "search",
+          "limit",
+          "offset",
+          "ordering"
+        ],
+        "return": [
+          "id",
+          "username"
+        ]
       },
       "retrieve": {
-        "return": []
+        "return": [
+          "id",
+          "username",
+          "email"
+        ]
       },
       "create": {
-        "send": [],
-        "return": []
+        "send": [
+          "username",
+          "password"
+        ],
+        "return": [
+          "id",
+          "username"
+        ]
       },
       "replace": {
-        "send": [],
+        "send": [
+          "id",
+          "username",
+          "email"
+        ],
         "return": []
       },
       "update": {
-        "send": [],
+        "send": [
+          "password"
+        ],
         "return": []
       },
       "destroy": {
