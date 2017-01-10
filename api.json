@@ -1,0 +1,41 @@
+{
+  "users": {
+    "model": {
+      "id": {
+        "verbose": "id"
+      },
+      "username": {
+        "verbose": "用户名",
+        "max_length": 20,
+        "min_length": 10
+      },
+      "password": {
+        "verbose": "密码",
+      }
+    },
+    "action": {
+      "list": {
+        "args": [],
+        "return": []
+      },
+      "retrieve": {
+        "return": []
+      },
+      "create": {
+        "send": [],
+        "return": []
+      },
+      "replace": {
+        "send": [],
+        "return": []
+      },
+      "update": {
+        "send": [],
+        "return": []
+      },
+      "destroy": {
+        "return": []
+      }
+    }
+  }
+}
