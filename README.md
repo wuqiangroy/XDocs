@@ -11,6 +11,7 @@ document client based on javascript
 2. 文档写法符合RESTful的要求
 3. 自动生成优雅的web页面
 4. 自动生成mock数据服务器
+5. 文档修改热更新
 
 ## TODO
 
