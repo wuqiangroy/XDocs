@@ -7,9 +7,6 @@ model:
         min_length: 10
     - password:
         verbose: 密码
-    - email:
-        verbose: 邮箱
-        regex: email
 
 action:
     list:
