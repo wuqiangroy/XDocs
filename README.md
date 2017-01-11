@@ -2,6 +2,9 @@
 
 RESTful API documents for humans
 
+mock server based on python
+document client based on nodejs
+
 ## Feature Support
 
 1. yml语法编写接口文档
@@ -15,10 +18,6 @@ RESTful API documents for humans
 2. 设计文档内容规范 
 3. 实现根据文档翻译为HTML
 4. 实现根据文档生成mock数据接口
-
-## Documentation
-
-项目文档暂无
 
 ## Final Thoughts
 
