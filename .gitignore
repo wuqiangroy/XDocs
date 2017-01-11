@@ -2,3 +2,4 @@
 Xdocs/__pycache__/
 Xdocs/server/__pycache__/
 *.egg-info/
+dist/
