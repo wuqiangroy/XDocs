@@ -5,6 +5,15 @@ RESTful API documents for humans
 mock server based on python
 document client based on javascript
 
+## Getting Started
+
+```
+pip install xdocs
+xdocs new tutorial
+cd tutorial
+xdocs run
+```
+
 ## Feature Support
 
 1. yml语法编写接口文档
