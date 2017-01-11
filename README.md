@@ -9,7 +9,7 @@ RESTful API documents for humans
 3. 自动生成优雅的web页面
 4. 自动生成mock数据服务器
 
-## Todo
+## TODO
 
 1. 设计文档结构
 2. 设计文档内容规范 
@@ -23,3 +23,7 @@ RESTful API documents for humans
 ## Final Thoughts
 
 文档驱动开发
+
+## License
+
+Xdocs is released under the [MIT license](LICENSE).
