@@ -3,7 +3,7 @@
 RESTful API documents for humans
 
 mock server based on python
-document client based on nodejs
+document client based on javascript
 
 ## Feature Support
 
