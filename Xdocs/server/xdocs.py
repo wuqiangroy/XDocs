@@ -9,7 +9,7 @@ def cli():
 
 
 @cli.command(name="new")
-@click.argument('project')
+@click.argument('name')
 def new(name):
     """Create a new XDocs project"""
     click.echo('Project %s!' % name)
