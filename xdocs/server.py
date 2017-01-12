@@ -1,34 +1,48 @@
-from bottle import route, run, request
+import os
+
+from flask import Flask, request, jsonify
+from flask import send_from_directory
+
+app = Flask(__name__)
+app.config['DEBUG'] = True
+app.cwd = os.getcwd()
 
 
-@route('/<resources>/', method='GET')
+@app.route('/')
+def index():
+    return send_from_directory(app.cwd + "/client/", "index.html")
+
+
+@app.route('/docs/<path:path>')
+def docs(path):
+    return send_from_directory(app.cwd + '/docs/', path)
+
+
+@app.route('/api/<resources>/', methods=['GET'])
 def list(resources):
-    return {resources: request.method}
+    return jsonify({resources: request.method})
 
 
-@route('/<resources>/', method='POST')
+@app.route('/api/<resources>/', methods=['POST'])
 def create(resources):
-    return {resources: request.method}
+    return jsonify({resources: request.method})
 
 
-@route('/<resources>/<resource_id>/', method='GET')
+@app.route('/api/<resources>/<resource_id>/', methods=['GET'])
 def retrieve(resources, resource_id):
-    return {resources: resource_id + request.method}
+    return jsonify({resources: "dassssssasda" + request.method})
 
 
-@route('/<resources>/<resource_id>/', method='PUT')
+@app.route('/api/<resources>/<resource_id>/', methods=['PUT'])
 def replace(resources, resource_id):
-    return {resources: resource_id + request.method}
+    return jsonify({resources: resource_id + request.method})
 
 
-@route('/<resources>/<resource_id>/', method='PATCH')
+@app.route('/api/<resources>/<resource_id>/', methods=['PATCH'])
 def update(resources, resource_id):
-    return {resources: resource_id + request.method}
+    return jsonify({resources: resource_id + request.method})
 
 
-@route('/<resources>/<resource_id>/', method='DELETE')
+@app.route('/api/<resources>/<resource_id>/', methods=['DELETE'])
 def delete(resources, resource_id):
-    return {resources: resource_id + request.method}
-
-
-run(host='localhost', port=8881)
+    return jsonify({resources: resource_id + request.method})
