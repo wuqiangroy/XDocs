@@ -1,6 +1,3 @@
 include README.md
 include LICENSE
-graft examples
-graft tests
-graft docs
 graft xdocs/client
