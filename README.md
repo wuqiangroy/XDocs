@@ -2,9 +2,9 @@
 
 RESTful API documents for humans
 
-mock server based on python
-document client based on javascript
-auto generate test codes
+- mock server based on python
+- document client based on javascript
+- auto generate test codes
 
 ## Getting Started
 
