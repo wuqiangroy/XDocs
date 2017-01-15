@@ -32,6 +32,7 @@ xdocs run
 2. 设计文档内容规范 
 3. 实现根据文档翻译为HTML
 4. 实现根据文档生成mock数据接口
+5. 权限与认证写法设计
 
 ## Final Thoughts
 
