@@ -132,14 +132,14 @@ def run(port):
         return
     # if os.path.exists("client"):
     #     shutil.rmtree("client")
-
-    logging.info('Coping web pages')
-    shutil.copytree(script_path + "/client", "client")
+    if not os.path.exists("client"):
+        logging.info('Coping web pages')
+        shutil.copytree(script_path + "/client", "client")
 
     with open(client_path + "/resource", 'w') as f:
         for file in os.listdir(source_path):
             if '.yml' in file:
-                f.writelines("- " + file)
+                f.writelines("- " + file + "\n")
     if not port:
         port = 8888
     manager = Manager(app)

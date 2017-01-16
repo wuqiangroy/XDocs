@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='xdocs',
-    version='0.1.8',
+    version='0.1.9',
     license='MIT',
     description='Documentation drives developing.',
     author='gaojiuli',
