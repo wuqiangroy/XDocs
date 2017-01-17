@@ -1,6 +1,6 @@
 # Xdocs
 
-RESTful API documents for humans
+Documentation drives developing.
 
 ## Getting Started
 
