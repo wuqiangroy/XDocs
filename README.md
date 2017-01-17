@@ -4,11 +4,11 @@ Documentation drives developing.
 
 ## Getting Started
 
-```bash
-pip install xdocs
-xdocs new tutorial
-cd tutorial
-xdocs run
+
+1. `pip install xdocs`
+2. `xdocs new tutorial`
+3. `cd tutorial`
+4. `xdocs run`
 ```
 
 ## Feature Support
