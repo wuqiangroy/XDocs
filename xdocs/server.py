@@ -30,8 +30,8 @@ def setup_data(resources):
         app.data[k] = {}
         for i in range(20):
             temp = {}
-            for field in v['model']:
-                temp[field["field"]] = generate_mock_data("name")
+            for field in v['model'].keys():
+                temp[field] = generate_mock_data("name")
             temp['id'] = uuid.uuid4().__str__()
             app.data[k][temp["id"]] = temp
 

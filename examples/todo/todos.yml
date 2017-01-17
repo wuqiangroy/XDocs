@@ -1,22 +1,22 @@
 name: todos
 description: 待办项
 model:
-    - field: id
-      verbose: id
-      type: int
-      regex: \d+
-    - field:  title
-      verbose: 标题
-      type: string
-    - field:  content
-      verbose: 内容
-      type: string
-    - field:  category
-      verbose: 类别
-      type: string
-    - field: tags
-      verbose: 标签
-      type: string
+    id:
+        verbose: id
+        type: int
+        regex: \d+
+    title:
+        verbose: 标题
+        type: string
+    content:
+        verbose: 内容
+        type: string
+    category:
+        verbose: 类别
+        type: string
+    tags:
+        verbose: 标签
+        type: string
 action:
     list:
       args: [search,limit,offset,ordering]
@@ -28,11 +28,7 @@ action:
     replace:
       send: [id,title,content,category,tags]
     destroy:
-      return: null
+      return: [id]
     update:
-      send:
-        - title
-        - content
-        - category
-        - tags
+      send: [title,content,category,tags]
 
