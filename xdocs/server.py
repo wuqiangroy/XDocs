@@ -75,22 +75,22 @@ def list(resources):
     for data in app.data[resources].values():
         return_fields = app.resources[resources]['action']['list']['return']
         results.append(dict_filter_by_array(data, return_fields))
-    next = None
-    previous = None
+    next_page = None
+    previous_page = None
 
     if offset + limit <= len(app.data[resources]):
-        next = "http://{}/api/{}/?limit={}&offset={}".format(request.get_header('host'),
+        next_page = "http://{}/api/{}/?limit={}&offset={}".format(request.get_header('host'),
+                                                                  resources,
+                                                                  limit,
+                                                                  offset + limit)
+    if offset - limit >= 0:
+        previous_page = "http://{}/api/{}/?limit={}&offset={}".format(request.get_header('host'),
                                                                       resources,
                                                                       limit,
-                                                                      offset + limit)
-    if offset - limit >= 0:
-        previous = "http://{}/api/{}/?limit={}&offset={}".format(request.get_header('host'),
-                                                                          resources,
-                                                                          limit,
-                                                                          offset - limit)
+                                                                      offset - limit)
     return {'count': len(app.data[resources]),
-            "next": next,
-            "previous": previous,
+            "next": next_page,
+            "previous": previous_page,
             'results': results[offset:(offset + limit)]}
 
 

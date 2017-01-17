@@ -1,4 +1,4 @@
-# Xdocs
+# XDocs
 
 Documentation drives developing.
 

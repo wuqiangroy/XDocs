@@ -12,7 +12,8 @@ setup(
         'faker',
         "click",
         'livereload',
-        'bottle'],
+        'bottle',
+        'PyYAML'],
     url='https://github.com/gaojiuli/Xdocs',
     packages=find_packages(),
     entry_points={
