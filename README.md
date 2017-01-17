@@ -9,7 +9,6 @@ Documentation drives developing.
 2. `xdocs new tutorial`
 3. `cd tutorial`
 4. `xdocs run`
-```
 
 ## Feature Support
 
