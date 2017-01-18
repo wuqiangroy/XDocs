@@ -49,7 +49,7 @@ def new(output_dir):
 @click.option('-p', '--port',
               help='IP address and port to serve documentation locally (default:"localhost:8000")',
               metavar='<IP:PORT>')
-def run(port=8888):
+def run(port):
     """Run the builtin development server"""
     script_path = os.path.dirname(os.path.realpath(__file__))
     base_path = os.getcwd()
@@ -70,7 +70,8 @@ def run(port=8888):
         for file in os.listdir(source_path):
             if '.yml' in file:
                 f.writelines("- " + file + "\n")
-
+    if not port:
+        port = 8888
     manager = Manager(app)
     live_server = Server(app.wsgi)
     live_server.watch(source_path)

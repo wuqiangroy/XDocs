@@ -1,7 +1,8 @@
+import json
 import os
 import uuid
 
-from bottle import static_file, Bottle, request, response
+from bottle import static_file, Bottle, request, response, abort
 from faker import Factory
 from yaml import load
 
@@ -74,6 +75,9 @@ def static(filename):
 @app.route('/api/<resources>/', method='GET')
 def list(resources):
     """show list of resources"""
+    if resources not in app.resources:
+        abort(404, "Not Found")
+
     results = []
     next_page = None
     previous_page = None
@@ -83,7 +87,7 @@ def list(resources):
 
     for data in app.data[resources].values():
         return_fields = app.resources[resources]['action']['list']['return']
-        results.append(dict_filter_by_array(data[offset:(offset + limit)], return_fields))
+        results.append(dict_filter_by_array(data, return_fields))
 
     if offset + limit <= len(app.data[resources]):
         next_page = "http://{}/api/{}/?limit={}&offset={}".format(request.get_header('host'),
@@ -98,12 +102,16 @@ def list(resources):
     return {'count': count,
             "next": next_page,
             "previous": previous_page,
-            'results': results}
+            'results': results[offset:(offset + limit)]}
 
 
 @app.route('/api/<resources>/', method='POST')
 def create(resources):
     """create a new resource"""
+
+    if resources not in app.resources:
+        abort(404, "Not Found")
+
     new_data = dict.fromkeys(app.resources[resources]["model"].keys())
     for key in new_data:
         if key in request.json:
@@ -116,12 +124,18 @@ def create(resources):
 @app.route('/api/<resources>/<resource_id>/', method='GET')
 def retrieve(resources, resource_id):
     """show the retrieve of resource"""
+    if resources not in app.resources or resource_id not in app.data[resources]:
+        abort(404, "Not Found")
+
     return app.data[resources][resource_id]
 
 
 @app.route('/api/<resources>/<resource_id>/', method='PUT')
 def replace(resources, resource_id):
     """replace the resource"""
+    if resources not in app.resources or resource_id not in app.data[resources]:
+        abort(404, "Not Found")
+
     for key in app.data[resources][resource_id].keys():
         app.data[resources][resource_id][key] = request.json.get(key)
     return app.data[resources][resource_id]
@@ -130,6 +144,8 @@ def replace(resources, resource_id):
 @app.route('/api/<resources>/<resource_id>/', method='PATCH')
 def update(resources, resource_id):
     """update the resource"""
+    if resources not in app.resources or resource_id not in app.data[resources]:
+        abort(404, "Not Found")
     for key, value in app.data[resources][resource_id].items():
         app.data[resources][resource_id][key] = request.json.get(key, value)
     return app.data[resources][resource_id]
@@ -138,6 +154,13 @@ def update(resources, resource_id):
 @app.route('/api/<resources>/<resource_id>/', method='DELETE')
 def destroy(resources, resource_id):
     """destroy the resource from app.data"""
+    if resources not in app.resources or resource_id not in app.data[resources]:
+        abort(404, "Not Found")
     del app.data[resources][resource_id]
     response.status = 204
     return ""
+
+
+@app.error(404)
+def error_handler_404(error):
+    return "Not Found"
