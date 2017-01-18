@@ -1,20 +1,20 @@
 import os
 import uuid
 
-from bottle import static_file, Bottle, abort, request
+from bottle import static_file, Bottle, request, response
 from faker import Factory
 from yaml import load
 
 app = Bottle(__name__)
 
-app.cwd = os.getcwd()
 fake = Factory.create('zh_CN')
+
 base_path = os.getcwd()
 source_path = os.path.join(base_path, 'docs')
+
 app.data = {}
 app.resources = {}
 
-fake = Factory.create("zh_CN")
 for file in os.listdir(source_path):
     if '.yml' in file:
         resource = load(open(os.path.join(source_path, file)).read())
@@ -49,34 +49,41 @@ def dict_filter_by_array(source_dict, array):
 
 @app.route('/')
 def index():
-    return static_file("index.html", app.cwd + "/client/")
+    """documentation web page as the home page"""
+    return static_file("index.html", base_path + "/client/")
 
 
 @app.route('/resource')
 def resource():
-    return static_file("resource", app.cwd + "/client/")
+    """resources is writen in the 'resource' file as a list"""
+    return static_file("resource", base_path + "/client/")
 
 
 @app.route('/docs/<filename>')
 def docs(filename):
-    return static_file(filename, root=app.cwd + '/docs')
+    """the docs directory is the place where users save there yml documentation file"""
+    return static_file(filename, base_path + '/docs')
 
 
 @app.route('/static/<filename>')
 def static(filename):
-    return static_file(filename, root=app.cwd + '/client/static')
+    """another static file needed by the web pages, such as js css and img"""
+    return static_file(filename, base_path + '/client/static')
 
 
 @app.route('/api/<resources>/', method='GET')
 def list(resources):
+    """show list of resources"""
     results = []
-    limit = int(request.query.get('limit', 10))
-    offset = int(request.query.get('offset', 0))
-    for data in app.data[resources].values():
-        return_fields = app.resources[resources]['action']['list']['return']
-        results.append(dict_filter_by_array(data, return_fields))
     next_page = None
     previous_page = None
+    limit = int(request.query.get('limit', 10))
+    offset = int(request.query.get('offset', 0))
+    count = len(app.data[resources])
+
+    for data in app.data[resources].values():
+        return_fields = app.resources[resources]['action']['list']['return']
+        results.append(dict_filter_by_array(data[offset:(offset + limit)], return_fields))
 
     if offset + limit <= len(app.data[resources]):
         next_page = "http://{}/api/{}/?limit={}&offset={}".format(request.get_header('host'),
@@ -88,58 +95,49 @@ def list(resources):
                                                                       resources,
                                                                       limit,
                                                                       offset - limit)
-    return {'count': len(app.data[resources]),
+    return {'count': count,
             "next": next_page,
             "previous": previous_page,
-            'results': results[offset:(offset + limit)]}
+            'results': results}
 
 
 @app.route('/api/<resources>/', method='POST')
 def create(resources):
-    try:
-        new_data = dict.fromkeys([field['field'] for field in app.resources[resources]["model"]])
-        new_data['id'] = uuid.uuid4().__str__()
-        for key in new_data:
-            if key in request.json:
-                new_data[key] = request.json.get(key)
-        app.data[resources][new_data['id']] = new_data
-        return new_data
-    except:
-        abort(404)
+    """create a new resource"""
+    new_data = dict.fromkeys(app.resources[resources]["model"].keys())
+    for key in new_data:
+        if key in request.json:
+            new_data[key] = request.json.get(key)
+    new_data['id'] = uuid.uuid4().__str__()
+    app.data[resources][new_data['id']] = new_data
+    return new_data
 
 
 @app.route('/api/<resources>/<resource_id>/', method='GET')
 def retrieve(resources, resource_id):
-    try:
-        return app.data[resources][resource_id]
-    except:
-        abort(404)
+    """show the retrieve of resource"""
+    return app.data[resources][resource_id]
 
 
 @app.route('/api/<resources>/<resource_id>/', method='PUT')
 def replace(resources, resource_id):
-    try:
-        for k, v in app.data[resources][resource_id].items():
-            app.data[resources][resource_id][k] = request.json.get(k)
-        return app.data[resources][resource_id]
-    except:
-        abort(404)
+    """replace the resource"""
+    for key in app.data[resources][resource_id].keys():
+        app.data[resources][resource_id][key] = request.json.get(key)
+    return app.data[resources][resource_id]
 
 
 @app.route('/api/<resources>/<resource_id>/', method='PATCH')
 def update(resources, resource_id):
-    try:
-        for k, v in app.data[resources][resource_id].items():
-            app.data[resources][resource_id][k] = request.json.get(k, v)
-        return app.data[resources][resource_id]
-    except:
-        abort(404)
+    """update the resource"""
+    for key, value in app.data[resources][resource_id].items():
+        app.data[resources][resource_id][key] = request.json.get(key, value)
+    return app.data[resources][resource_id]
 
 
 @app.route('/api/<resources>/<resource_id>/', method='DELETE')
 def destroy(resources, resource_id):
-    try:
-        del app.data[resources][resource_id]
-        return {'detail': 'success'}
-    except:
-        abort(404)
+    """destroy the resource from app.data"""
+    del app.data[resources][resource_id]
+    response.status = 204
+    return ""
