@@ -1,16 +1,21 @@
-# ![](logo.png)XDocs
-
+<div align="center">
+<a href="https://github.com/webpack/webpack">
+    <img width="200" heigth="200" src="https://raw.githubusercontent.com/gaojiuli/XDocs/master/logo.png">
+</a>
+<h1>XDocs</h1>
+</div>
 Documentation drives developing.
 
-## Getting Started
 
+<h2 align="center">Getting Started</h2>
 
 1. `pip install xdocs`
 2. `xdocs new tutorial`
 3. `cd tutorial`
 4. `xdocs run`
 
-## Feature Support
+
+<h2 align="center">Feature Support</h2>
 
 1. translate yml documentation to web pages
 2. generate static web pages
@@ -20,7 +25,8 @@ Documentation drives developing.
 6. mock data server
 8. web pages hot reload
 
-## TODO
+
+<h2 align="center">TODO</h2>
 
 1. design document structure
 2. design the rule of writing documentation
@@ -28,7 +34,8 @@ Documentation drives developing.
 4. generate mock data server
 5. maybe add the authentication and permissions into this project in the future
 
-## Final Thoughts
+
+<h2 align="center">Final Thoughts</h2>
 
 1. documentation driven develop
 1. separate server and client
@@ -36,6 +43,6 @@ Documentation drives developing.
 3. improve speed of developing
 4. shorten the time of deliver
 
-## License
+<h2 align="center">License</h2>
 
 [MIT](LICENSE).
