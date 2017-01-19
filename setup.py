@@ -8,7 +8,7 @@ long_description = (
 )
 setup(
     name='xdocs',
-    version='0.2.2',
+    version='0.2.4',
     license='MIT',
     description='Documentation drives developing.',
     long_description=long_description,

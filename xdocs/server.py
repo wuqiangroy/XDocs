@@ -14,11 +14,11 @@ source_path = os.path.join(base_path, 'docs')
 
 app.data = {}
 app.resources = {}
-
-for file in os.listdir(source_path):
-    if '.yml' in file:
-        resource = load(open(os.path.join(source_path, file)).read())
-        app.resources[resource['name']] = resource
+if os.path.exists(source_path):
+    for file in os.listdir(source_path):
+        if '.yml' in file:
+            resource = load(open(os.path.join(source_path, file)).read())
+            app.resources[resource['name']] = resource
 
 
 def generate_mock_data(file_type):
