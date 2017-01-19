@@ -3,7 +3,6 @@ import os
 import shutil
 
 import click
-from flask_script import Manager
 from livereload import Server
 
 from .server import app
@@ -104,11 +103,10 @@ def run(port):
                 f.writelines("- " + file + "\n")
     if not port:
         port = 8888
-    manager = Manager(app)
+
     live_server = Server(app.wsgi)
     live_server.watch(source_path)
     live_server.serve(restart_delay=0, open_url_delay=True, host="0.0.0.0", port=int(port))
-    manager.run()
 
 
 if __name__ == '__main__':
