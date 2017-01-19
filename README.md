@@ -1,4 +1,4 @@
-# XDocs
+# ![](logo.png)XDocs
 
 Documentation drives developing.
 
