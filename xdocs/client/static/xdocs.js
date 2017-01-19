@@ -36,6 +36,7 @@ var docs = new Vue({
         "resources": resources,
         "model": "",
         "action": "",
+        "is_update": false,
         "detail": {
             "name": "",
             "action": "",
@@ -53,9 +54,7 @@ var docs = new Vue({
         action_description: function(action, description) {
             return actionMap[action].description + description
         },
-        action_detail: function() {
-
-        },
+        action_detail: function() {},
         getDetail: function(name, action, resource) {
             this.model = resource.model;
             this.action = resource.action;
@@ -63,16 +62,53 @@ var docs = new Vue({
             this.detail.name = name;
             this.detail.action = action;
 
-            this.detail.args = resource.action[action]["args"];
-            this.detail.returns = resource.action[action]["return"];
-            this.detail.sends = resource.action[action]["send"];
-
-            this.detail.method = actionMap[action]["method"];
             var primary_key = actionMap[action]["primary_key"];
             if (primary_key)
                 this.detail.link = "/" + name + "/" + "{" + primary_key + "}/";
             else
                 this.detail.link = "/" + name + "/";
+
+            if (action == 'update') {
+                this.detail.method = 'PATCH'
+                this.is_update = true;
+                this.detail.args = '';
+                this.detail.returns = '';
+                this.detail.sends = '';
+                var field = resource.action[action]["send"][0]
+                var type = this.model[field].type
+                if (type == 'bool')
+                    this.detail.sends = ['true', 'false']
+
+                var choice = this.model[field].choice
+                if (choice)
+                    this.detail.sends = choice
+
+                return;
+            } else {
+                this.is_update = false;
+            }
+
+            this.detail.args = resource.action[action]["args"];
+            this.detail.returns = resource.action[action]["return"];
+            this.detail.sends = resource.action[action]["send"];
+
+
+            this.detail.method = actionMap[action]["method"];
+        },
+        updateDetail: function(field) {
+            if (this.model) {
+                var type = this.model[field].type
+                if (type == 'bool')
+                    this.detail.sends = ['true', 'false']
+
+                var choice = this.model[field].choice
+                if (choice)
+                    this.detail.sends = choice
+            }
+        },
+        updateDescription: function(field) {
+            if (this.model)
+                return "更新" + this.model[field].verbose;
         },
         argsDetail: function(arg) {
             var arg_detail = this.model[arg]

@@ -51,21 +51,27 @@ li {
     cursor: pointer;
 }*/
 
-#docs>.menu ul ul {
+#docs>.menu ul.menu_root ul.menu_sec {
     padding: 10px 0;
 }
 
-#docs>.menu li li.sec_menu {
-    height: 30px;
+#docs>.menu .menu_sec>li {
+    /*height: 30px;*/
     line-height: 30px;
     padding-left: 20px;
+}
+
+#docs>.menu .menu_third>li {
+    /*height: 30px;*/
+    line-height: 30px;
+    padding-left: 15px;
 }
 
 #docs>.menu h2 {
     color: #7f8c8d;
 }
 
-li.sec_menu a {
+.menu_sec>li a {
     line-height: 30px;
     cursor: pointer;
     color: #7f8c8d;

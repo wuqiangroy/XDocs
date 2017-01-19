@@ -23,12 +23,17 @@
 
     <div id="docs">
         <div class="menu">
-            <ul>
+            <ul class="menu_root">
                 <li v-for="resource in resources">
                     <h2>{{resource.description}}</h2>
-                    <ul v-bind:name="resource.name">
-                        <li v-for="(item, action) in resource.action" class="sec_menu">
+                    <ul class="menu_sec" v-bind:name="resource.name">
+                        <li v-for="(item, action) in resource.action">
                             <a @click.prevent="getDetail(resource.name,action,resource)" v-bind:action="action">{{ action_description(action,resource.description) }}</a>
+                            <ul class="menu_third" v-if="is_update && action == 'update'">
+                                <li v-for="field in resource.action.update.send">
+                                    <a @click.prevent="updateDetail(field)">{{ updateDescription(field) }}</a>
+                                </li>
+                            </ul>
                         </li>
                     </ul>
                 </li>
