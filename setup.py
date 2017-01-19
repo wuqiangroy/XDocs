@@ -1,5 +1,19 @@
-from setuptools import setup, find_packages
+"""
+XDocs
+"""
+import codecs
+import os
+import re
 
+from setuptools import find_packages
+from setuptools import setup
+
+with codecs.open(os.path.join(os.path.abspath(os.path.dirname(__file__)), 'xdocs', '__init__.py'), 'r', 'latin1') as fp:
+    try:
+        version = re.findall(r"^__version__ = '([^']+)'\r?$",
+                             fp.read(), re.M)[0]
+    except IndexError:
+        raise RuntimeError('Unable to determine version.')
 long_description = (
     "XDocs is a fast and simple documentation generator "
     "that's geared towards building project documentation. Documentation "
@@ -8,13 +22,14 @@ long_description = (
 )
 setup(
     name='xdocs',
-    version='0.2.4',
+    version=version,
     license='MIT',
     description='Documentation drives developing.',
     long_description=long_description,
     author='gaojiuli',
     author_email='gaojiuli@gmail.com',
     include_package_data=True,
+    platforms='any',
     install_requires=[
         'Faker>=0.7.7',
         "click>=6.7",
@@ -29,20 +44,11 @@ setup(
         ],
     },
     classifiers=[
-        'Development Status :: 5 - Production/Stable',
-        'Environment :: Console',
+        'Development Status :: 1 - Alpha',
         'Environment :: Web Environment',
-        'Intended Audience :: Developers',
         'License :: OSI Approved :: MIT License',
-        'Operating System :: OS Independent',
-        'Programming Language :: Python',
-        'Programming Language :: Python :: 2',
-        'Programming Language :: Python :: 2.6',
-        'Programming Language :: Python :: 2.7',
-        'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.3',
-        'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3.6',
         "Programming Language :: Python :: Implementation :: CPython",
         'Topic :: Documentation',
         'Topic :: Text Processing',
