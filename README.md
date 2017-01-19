@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/channelcat/sanic.svg?branch=master)](https://travis-ci.org/channelcat/sanic)
+[![Build Status](https://api.travis-ci.org/gaojiuli/XDocs.svg?branch=master)](https://travis-ci.org/gaojiuli/XDocs)
 [![PyPI](https://img.shields.io/pypi/v/xdocs.svg)](https://pypi.python.org/pypi/xdocs/)
 [![Python](https://img.shields.io/pypi/pyversions/xdocs.svg)](https://pypi.python.org/pypi/xdocs/)
 
