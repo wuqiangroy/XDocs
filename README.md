@@ -1,6 +1,6 @@
 [![Build Status](https://api.travis-ci.org/gaojiuli/XDocs.svg?branch=master)](https://travis-ci.org/gaojiuli/XDocs)
-[![PyPI](https://img.shields.io/pypi/v/xdocs.svg)](https://pypi.python.org/pypi/xdocs/)
-[![Python](https://img.shields.io/pypi/pyversions/xdocs.svg)](https://pypi.python.org/pypi/xdocs/)
+[![PyPI](https://img.shields.io/pypi/v/xdocs.svg?clear_cache=true)](https://pypi.python.org/pypi/xdocs/)
+[![Python](https://img.shields.io/pypi/pyversions/xdocs.svg?clear_cache=true)](https://pypi.python.org/pypi/xdocs/)
 
 <div align="center">
 <a href="https://github.com/gaojiuli/XDocs">
