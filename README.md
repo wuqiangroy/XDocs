@@ -1,7 +1,7 @@
 
 <div align="center">
 <a href="https://github.com/gaojiuli/XDocs">
-    <img width="200" height="200" src="logo.svg">
+    <img width="200" height="200" src="logo.png">
 </a>
 <h1>XDocs</h1>
 <p><a href="https://travis-ci.org/channelcat/sanic"><img src="https://camo.githubusercontent.com/7e3ab474eab34aa382647654d298bfbe632faac7/68747470733a2f2f7472617669732d63692e6f72672f6368616e6e656c6361742f73616e69632e7376673f6272616e63683d6d6173746572" alt="Build Status" data-canonical-src="https://travis-ci.org/channelcat/sanic.svg?branch=master" style="max-width:100%;"></a>
