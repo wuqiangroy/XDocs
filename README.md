@@ -1,3 +1,4 @@
+
 <div align="center">
 <a href="https://github.com/webpack/webpack">
     <img width="200" heigth="200" src="https://raw.githubusercontent.com/gaojiuli/XDocs/master/logo.png">
@@ -5,6 +6,10 @@
 <h1>XDocs</h1>
 <p>Documentation drives developing.</p>
 </div>
+
+[![Build Status](https://travis-ci.org/channelcat/sanic.svg?branch=master)](https://travis-ci.org/channelcat/sanic)
+[![PyPI](https://img.shields.io/pypi/v/xdocs.svg)](https://pypi.python.org/pypi/xdocs/)
+[![Python](https://img.shields.io/pypi/pyversions/xdocs.svg)](https://pypi.python.org/pypi/xdocs/)
 
 
 
