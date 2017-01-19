@@ -3,8 +3,9 @@
     <img width="200" heigth="200" src="https://raw.githubusercontent.com/gaojiuli/XDocs/master/logo.png">
 </a>
 <h1>XDocs</h1>
+<p>Documentation drives developing.</p>
 </div>
-Documentation drives developing.
+
 
 
 <h2 align="center">Getting Started</h2>
