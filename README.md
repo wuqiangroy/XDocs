@@ -10,11 +10,6 @@
 <p>Documentation drives developing.</p>
 </div>
 
-[![Build Status](https://travis-ci.org/channelcat/sanic.svg?branch=master)](https://travis-ci.org/channelcat/sanic)
-[![PyPI](https://img.shields.io/pypi/v/xdocs.svg)](https://pypi.python.org/pypi/xdocs/)
-[![Python](https://img.shields.io/pypi/pyversions/xdocs.svg)](https://pypi.python.org/pypi/xdocs/)
-
-
 
 <h2 align="center">Getting Started</h2>
 
