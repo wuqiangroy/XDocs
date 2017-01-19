@@ -4,6 +4,9 @@
     <img width="200" heigth="200" src="https://raw.githubusercontent.com/gaojiuli/XDocs/master/logo.png">
 </a>
 <h1>XDocs</h1>
+<p><a href="https://travis-ci.org/channelcat/sanic"><img src="https://camo.githubusercontent.com/7e3ab474eab34aa382647654d298bfbe632faac7/68747470733a2f2f7472617669732d63692e6f72672f6368616e6e656c6361742f73616e69632e7376673f6272616e63683d6d6173746572" alt="Build Status" data-canonical-src="https://travis-ci.org/channelcat/sanic.svg?branch=master" style="max-width:100%;"></a>
+<a href="https://pypi.python.org/pypi/xdocs/"><img src="https://camo.githubusercontent.com/43c6b710a545b73fdd5582de33a8e96dddc45a80/68747470733a2f2f696d672e736869656c64732e696f2f707970692f762f78646f63732e737667" alt="PyPI" data-canonical-src="https://img.shields.io/pypi/v/xdocs.svg" style="max-width:100%;"></a>
+<a href="https://pypi.python.org/pypi/xdocs/"><img src="https://camo.githubusercontent.com/6f5b9d44ce98307a7ee4263216720e67b2820c1b/68747470733a2f2f696d672e736869656c64732e696f2f707970692f707976657273696f6e732f78646f63732e737667" alt="Python" data-canonical-src="https://img.shields.io/pypi/pyversions/xdocs.svg" style="max-width:100%;"></a></p>
 <p>Documentation drives developing.</p>
 </div>
 
